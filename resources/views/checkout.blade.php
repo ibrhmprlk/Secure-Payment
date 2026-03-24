@@ -323,6 +323,183 @@
             background: #f1f5f9; 
             margin: 20px 0; 
         }
+
+        /* ===================== MOBİL RESPONSIVE ===================== */
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+                align-items: flex-start;
+                padding-top: 16px;
+                padding-bottom: 32px;
+            }
+
+            .card {
+                padding: 20px 16px;
+                border-radius: 12px;
+                max-width: 100%;
+            }
+
+            .header {
+                gap: 10px;
+                margin-bottom: 20px;
+                padding-bottom: 16px;
+            }
+
+            .header-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                flex-shrink: 0;
+            }
+
+            .header-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .header h1 {
+                font-size: 17px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            /* Amount butonları 2x2 grid olsun, 4'lü sıkışmasın */
+            .amount-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .amount-btn {
+                padding: 13px 0;
+                font-size: 15px;
+                border-radius: 8px;
+                /* Tıklanabilir alan daha büyük */
+                min-height: 48px;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                padding: 13px 12px;
+                font-size: 16px; /* iOS zoom engellemek için 16px+ */
+                border-radius: 8px;
+            }
+
+            .stripe-field {
+                padding: 14px 12px;
+                border-radius: 8px;
+            }
+
+            /* Expiry + CVC yan yana kalabilir ama biraz daha nefes alsın */
+            .grid-2 {
+                gap: 10px;
+            }
+
+            .label {
+                font-size: 13px;
+                margin-bottom: 7px;
+            }
+
+            .field {
+                margin-bottom: 14px;
+            }
+
+            /* Test card butonları tam genişlik, 2 sütun */
+            .test-cards-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .card-btn {
+                padding: 14px 8px;
+                border-radius: 8px;
+                min-height: 64px;
+                /* Touch hedef büyüklüğü */
+            }
+
+            .card-btn .status {
+                font-size: 11px;
+            }
+
+            .hint-number {
+                font-size: 13px;
+                word-break: break-all;
+                line-height: 1.5;
+            }
+
+            .hint-meta {
+                gap: 12px;
+                font-size: 11px;
+                flex-wrap: wrap;
+            }
+
+            .hint-box {
+                padding: 10px;
+            }
+
+            .copy-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+                /* Daha kolay tıklanabilir */
+                min-height: 32px;
+            }
+
+            .pay-btn {
+                padding: 15px;
+                font-size: 16px;
+                border-radius: 10px;
+                min-height: 52px;
+            }
+
+            .section-title {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+
+            .divider {
+                margin: 16px 0;
+            }
+
+            .secure-badge {
+                font-size: 11px;
+                margin-top: 14px;
+            }
+
+            .form-error {
+                font-size: 13px;
+                padding: 11px 12px;
+                border-radius: 8px;
+            }
+
+            .field-error {
+                font-size: 11px;
+            }
+
+            .test-cards-label {
+                font-size: 11px;
+            }
+        }
+
+        /* Çok küçük ekranlar (320px) */
+        @media (max-width: 360px) {
+            .card {
+                padding: 16px 12px;
+            }
+
+            .header h1 {
+                font-size: 15px;
+            }
+
+            .amount-btn {
+                font-size: 14px;
+            }
+
+            .hint-number {
+                font-size: 12px;
+            }
+        }
+        /* ============================================================ */
     </style>
 </head>
 <body>
@@ -396,24 +573,57 @@
             <div class="field">
                 <p class="test-cards-label">Test Cards — Click to auto-fill</p>
                 <div class="test-cards-grid">
+                    <!-- VISA -->
                     <button type="button" class="card-btn" onclick="fillCard('visa')" id="btn-visa">
-                        <svg viewBox="0 0 48 16" width="40" height="12"><text x="0" y="12" font-size="12" font-weight="bold" fill="#1a1f71" font-family="Arial">VISA</text></svg>
-                        <span class="status success">Success</span>
+                        <svg viewBox="0 0 60 20" width="54" height="18" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="60" height="20" rx="3" fill="#1a1f71"/>
+                            <text x="5" y="15" font-size="13" font-weight="800" fill="white" font-family="Arial, sans-serif" letter-spacing="1">VISA</text>
+                            <!-- Dekoratif çizgi -->
+                            <rect x="42" y="6" width="14" height="2" rx="1" fill="#f7b600" opacity="0.8"/>
+                            <rect x="42" y="11" width="10" height="2" rx="1" fill="#f7b600" opacity="0.5"/>
+                        </svg>
+                        <span class="status success">✓ Success</span>
                     </button>
+
+                    <!-- MASTERCARD -->
                     <button type="button" class="card-btn" onclick="fillCard('mastercard')" id="btn-mastercard">
-                        <div style="display:flex;align-items:center;">
-                            <div style="width:16px;height:16px;border-radius:50%;background:#EB001B;"></div>
-                            <div style="width:16px;height:16px;border-radius:50%;background:#F79E1B;margin-left:-7px;"></div>
-                        </div>
-                        <span class="status success">Success</span>
+                        <svg viewBox="0 0 60 24" width="54" height="22" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Sol kırmızı daire -->
+                            <circle cx="22" cy="12" r="10" fill="#EB001B"/>
+                            <!-- Sağ turuncu daire -->
+                            <circle cx="38" cy="12" r="10" fill="#F79E1B"/>
+                            <!-- Ortadaki kesişim rengi -->
+                            <path d="M30,4.8 A10,10 0 0 1 30,19.2 A10,10 0 0 1 30,4.8Z" fill="#FF5F00"/>
+                            <!-- Daha net kesişim -->
+                            <path d="M28.5,5.5 Q30,3.5 31.5,5.5 Q35,8 35,12 Q35,16 31.5,18.5 Q30,20.5 28.5,18.5 Q25,16 25,12 Q25,8 28.5,5.5Z" fill="#FF5F00"/>
+                        </svg>
+                        <span class="status success">✓ Success</span>
                     </button>
+
+                    <!-- AMEX -->
                     <button type="button" class="card-btn" onclick="fillCard('amex')" id="btn-amex">
-                        <svg viewBox="0 0 48 16" width="44" height="12"><text x="0" y="12" font-size="10" font-weight="bold" fill="#007BC1" font-family="Arial">AMEX</text></svg>
-                        <span class="status success">Success</span>
+                        <svg viewBox="0 0 60 20" width="54" height="18" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="60" height="20" rx="3" fill="#007BC1"/>
+                            <!-- AMEX yazısı -->
+                            <text x="4" y="14" font-size="10" font-weight="800" fill="white" font-family="Arial, sans-serif" letter-spacing="0.5">AMEX</text>
+                            <!-- Sağda stilize rozet -->
+                            <polygon points="45,4 56,4 56,16 45,16 40,10" fill="#005ea6"/>
+                            <text x="42" y="14" font-size="7" font-weight="700" fill="white" font-family="Arial, sans-serif">®</text>
+                        </svg>
+                        <span class="status success">✓ Success</span>
                     </button>
+
+                    <!-- DECLINED -->
                     <button type="button" class="card-btn" onclick="fillCard('declined')" id="btn-declined">
-                        <svg viewBox="0 0 64 16" width="56" height="12"><text x="0" y="12" font-size="10" font-weight="bold" fill="#dc2626" font-family="Arial">DECLINED</text></svg>
-                        <span class="status fail">Fail</span>
+                        <svg viewBox="0 0 60 20" width="54" height="18" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="60" height="20" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+                            <!-- Kırmızı X ikonu -->
+                            <circle cx="10" cy="10" r="6" fill="#ef4444"/>
+                            <line x1="7.5" y1="7.5" x2="12.5" y2="12.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                            <line x1="12.5" y1="7.5" x2="7.5" y2="12.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                            <text x="20" y="14" font-size="9" font-weight="700" fill="#dc2626" font-family="Arial, sans-serif" letter-spacing="0.3">DECLINED</text>
+                        </svg>
+                        <span class="status fail">✕ Fail</span>
                     </button>
                 </div>
 
@@ -576,20 +786,21 @@
         document.getElementById('payment-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             hideError();
+            setLoading(true);
 
             const amount = document.getElementById('amount').value;
             const holder = document.getElementById('card-holder').value.trim();
 
             if (!amount || parseFloat(amount) < 1) {
                 showError('Please enter a valid amount');
+                setLoading(false);
                 return;
             }
             if (!holder) {
                 showError('Please enter card holder name');
+                setLoading(false);
                 return;
             }
-
-            setLoading(true);
 
             try {
                 const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
@@ -619,12 +830,28 @@
                     }
                 });
 
-                const data = await response.json();
+                let data;
+                try {
+                    data = await response.json();
+                } catch (jsonErr) {
+                    showError('Server returned an unexpected response. Please try again.');
+                    setLoading(false);
+                    return;
+                }
 
-                if (data.success) {
+                // Laravel validation hatası (422)
+                if (response.status === 422) {
+                    const errors = data.errors || {};
+                    const firstError = Object.values(errors)[0];
+                    showError(firstError ? firstError[0] : 'Validation failed. Please check your inputs.');
+                    setLoading(false);
+                    return;
+                }
+
+                if (data.success && data.redirect) {
                     window.location.href = data.redirect;
                 } else {
-                    showError(data.error || 'Payment failed');
+                    showError(data.error || 'Payment failed. Please try again.');
                     setLoading(false);
                 }
 
